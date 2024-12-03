@@ -70,10 +70,35 @@ if not text:
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 # Define chunk size and prompt for keyword extraction
-CHUNK_SIZE = 2800
-KEYWORD_PROMPT = "Extract key words and concepts from the text along with their corresponding definitions, Store this ininformation in a dictionary."
+CHUNK_SIZE = 2700
+KEYWORD_PROMPT = """
+You are tasked with extracting structured information from the provided text. For each keyword or concept, provide the following in a consistent format:
 
-# Function to chunk text into smaller parts
+1. **Term**: The key term or concept.
+2. **Definition**: A concise and clear definition of the term or concept.
+3. **Example**: Provide one relevant example that illustrates the term. If no example is explicitly available, return "None".
+
+Format the output exactly like this (including all symbols and delimiters):
+
+### BEGIN ENTRY ###
+Term: [Term]
+Definition: [Definition]
+Example: [Example]
+### END ENTRY ###
+
+Ensure the following:
+- Each entry is enclosed between "### BEGIN ENTRY ###" and "### END ENTRY ###".
+- Use precise, concise language.
+- Exclude any unrelated or random words or content.
+- Ignore redundant terms or repeated examples.
+- If the provided text lacks a term, definition, or example, explicitly write "None" for that part.
+- Ensure the output is ready to be concatenated with outputs from other chunks without ambiguity.
+
+Only provide the requested structured output in the exact format described. Do not include explanations or introductions.
+"""
+
+
+#Function to chunk text into smaller parts
 def chunk_text(text, chunk_size):
     words = text.split()
     return [ " ".join(words[i:i + chunk_size]) for i in range(0, len(words), chunk_size) ]
@@ -100,7 +125,11 @@ for i, chunk in enumerate(chunks, start=1):
     print(f"Processing chunk {i}/{total_chunks}...")
     keywords = extract_keywords(chunk)
     all_keywords.append(keywords)
-    
+
+    # Print the output of the current chunk
+    print(f"Output for chunk {i}/{total_chunks}:")
+    print(keywords)  
+ 
     # Introduce a delay between requests to avoid rate limits
     time.sleep(15)
 
