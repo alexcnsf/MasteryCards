@@ -70,14 +70,13 @@ if not text:
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 # Define chunk size and prompt for keyword extraction
-CHUNK_SIZE = 3000
+CHUNK_SIZE = 2800
 KEYWORD_PROMPT = "Extract key words and concepts from the text along with their corresponding definitions, Store this ininformation in a dictionary."
 
 # Function to chunk text into smaller parts
 def chunk_text(text, chunk_size):
     words = text.split()
-    for i in range(0, len(words), chunk_size):
-        yield " ".join(words[i:i + chunk_size])
+    return [ " ".join(words[i:i + chunk_size]) for i in range(0, len(words), chunk_size) ]
 
 # Extract keywords and definitions from each chunk
 def extract_keywords(chunk):
@@ -91,13 +90,22 @@ def extract_keywords(chunk):
     return response.choices[0].message.content
 
 # Process each chunk and collect keywords/definitions
+chunks = chunk_text(text, CHUNK_SIZE)
+total_chunks = len(chunks)
 all_keywords = []
-for chunk in chunk_text(text, CHUNK_SIZE):
+
+print(f"Total chunks to process: {total_chunks}")
+
+for i, chunk in enumerate(chunks, start=1):
+    print(f"Processing chunk {i}/{total_chunks}...")
     keywords = extract_keywords(chunk)
     all_keywords.append(keywords)
     
     # Introduce a delay between requests to avoid rate limits
     time.sleep(15)
+
+    # Progress update
+    print(f"Chunk {i}/{total_chunks} completed.")
 
 # Combine all the extracted keywords and definitions
 final_keywords = "\n\n".join(all_keywords)
