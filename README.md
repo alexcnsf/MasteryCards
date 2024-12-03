@@ -4,11 +4,11 @@ Completed:
 
 1. Collect PDFs to practice with
 2. Make python file to scrape most information from the files
+3. Create python files to take pdfs, scrape them, and chunk them into input sizes.
+4. Create process for prompting the LLM for key words and their defintions for each chunk.
 
 To-Dos:
 
-3. Create python files to take pdfs, scrape them, and chunk them into input sizes.
-4. Create process for prompting the LLM for key words and their defintions for each chunk.
 5. Have the outputs organized into CSVs that appened to each other across chunks.
 6. Connect all tasks to work together after input of a document, no matter how slow.
 7. Start part 2 of quizzing on a CSV of flashcards.
