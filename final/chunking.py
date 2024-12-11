@@ -1,6 +1,6 @@
 import re
 import PyPDF2
-import fitz  # PyMuPDF for font size analysis
+import fitz  # PyMuPDF for font analysis
 
 CHUNK_SIZE = 2700  # Approximate token limit
 
@@ -15,25 +15,11 @@ def extract_text_from_pdf(pdf_path):
     return text
 
 
-def find_section_starts_by_font_size(pdf_path):
-    """Identifies section breaks based on large font sizes."""
-    doc = fitz.open(pdf_path)
-    section_starts = []
-
-    for page_num in range(len(doc)):
-        page = doc[page_num]
-        blocks = page.get_text("dict")["blocks"]
-
-        for block in blocks:
-            for line in block.get("lines", []):
-                for span in line.get("spans", []):
-                    if span["size"] > 11:  # Adjust font size threshold as needed
-                        text = span["text"].strip()
-                        if text:
-                            section_starts.append((page_num, text))
-
-    doc.close()
-    return section_starts
+def find_theorem_or_definition_starts(text):
+    """Identifies section starts based on 'Theorem' or 'Definition' followed by a number."""
+    pattern = r"\b(Theorem|Definition)\s\d+\.\d+(\.\d+)?\b"
+    matches = [(m.start(), m.group()) for m in re.finditer(pattern, text)]
+    return matches
 
 
 def split_large_section(section, chunk_size):
@@ -50,13 +36,12 @@ def split_large_section(section, chunk_size):
     return chunks
 
 
-def chunk_text_by_sections(text, section_starts, chunk_size=CHUNK_SIZE):
-    """Splits the text into chunks based on logical sections."""
+def chunk_text_by_theorem_definition(text, section_starts, chunk_size=CHUNK_SIZE):
+    """Splits the text into chunks based on 'Theorem' or 'Definition' followed by a number."""
     chunks = []
 
-    for i, (page_num, marker) in enumerate(section_starts):
-        start = text.find(marker)
-        end = text.find(section_starts[i + 1][1]) if i + 1 < len(section_starts) else len(text)
+    for i, (start, marker) in enumerate(section_starts):
+        end = section_starts[i + 1][0] if i + 1 < len(section_starts) else len(text)
         section = text[start:end].strip()
 
         # Check if the section needs further splitting
@@ -74,11 +59,13 @@ def main():
         # Extract text from the PDF
         pdf_text = extract_text_from_pdf(pdf_path)
 
-        # Identify section starts by font size
-        section_starts = find_section_starts_by_font_size(pdf_path)
+        # Identify section starts based on 'Theorem' or 'Definition'
+        section_starts = find_theorem_or_definition_starts(pdf_text)
+        print(f"Section starts detected: {section_starts}")
 
         # Chunk the text
-        chunks = chunk_text_by_sections(pdf_text, section_starts, chunk_size=CHUNK_SIZE)
+        chunks = chunk_text_by_theorem_definition(pdf_text, section_starts, chunk_size=CHUNK_SIZE)
+        print(f"Number of chunks created: {len(chunks)}")
 
         # Output results
         for i, chunk in enumerate(chunks):
@@ -100,4 +87,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
