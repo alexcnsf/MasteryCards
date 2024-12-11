@@ -11,12 +11,8 @@ To-Dos:
 
 5. Have the outputs organized into CSVs that appened to each other across chunks.
 6. Connect all tasks to work together after input of a document, no matter how slow.
-7. Start part 2 of quizzing on a CSV of flashcards.
-8. Create system to ask show flashcard one at a time.
-9. Allow for typed answers in response and entering after completion
-10. Compare the typed answer with answer on back of card using a LLM to evaluate if it correct.
-11. keep track of scores and update final csv to only include cards with incorrect answers.
 
+New tasks:
 
 1. Extracting Figures and Their References from the PDF
 Extract Figures with OCR or Libraries: Tools like PyMuPDF (fitz), pdfminer, or pdfplumber can extract figures as images. If figures have associated captions (e.g., "Figure 1.1"), OCR libraries like Tesseract can extract these captions and associate them with the figures.
