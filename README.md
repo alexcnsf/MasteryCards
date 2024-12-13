@@ -9,6 +9,10 @@
 
 # Implementation
 
+```
+pip install -r requirements.txt
+```
+
 First go to Groq and generate an API key. Set the key in your enviroment using this command:
 ```
 export GROQ_API_KEY="your_api_key_here"

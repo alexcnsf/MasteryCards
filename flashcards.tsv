@@ -1,2 +1,12 @@
-What is the probability of an event when another event has occurred, given that they are connected?	<img src="page_2_figure.png">
-What are the intersections of A representing in the context of a partition in a mathematical proof?	<img src="page_6_figure.png">
+Conditional Probability	The updated probability of event A after we learn that event B has occurred, considering the new information that B has occurred. It is calculated as the probability of A and B occurring together, Pr (A ∩ B), divided by the probability of B, Pr (B), as long as Pr (B) > 0.
+Conditional Probability (Definition)	The conditional probability of event A given that event B has occurred, denoted Pr (A |B), is calculated as Pr (A ∩ B) divided by Pr (B) if Pr (B) > 0.
+Conditional Probability	The conditional probability Pr(A | B) is the proportion of occurrences of the event B that is also part of the event A, given that the event B has occurred.
+Event B	The set of all possible outcomes, for instance {one of the numbers drawn is 15}, where Pr(B) represents the proportion of total probability that is represented by Pr(A ∩ B).
+Event A	The set of all possible outcomes that include a specific condition, for instance your ticket is a winner, where Pr(A) is the proportion of total probability represented by Pr(A) and Pr(A ∩ B) is the proportion of probability represented by the intersection of events A and B.
+Definition of Conditional Probability Pr(A | B)	Pr(A | B) = Pr(A ∩ B) / Pr(B), which is the proportion of repetitions in which the event B occurs and the event A also occurs.
+Recurrence	The repeated occurrence of depression episodes, often within two to three years, in patients who have previously experienced an episode.
+Clinical trial	A scientific experiment in which a controlled treatment or placebo is administered to patients or subjects to assess the efficacy and safety of the treatment.
+Placebo	A treatment that is intended to have no therapeutic effect, used as a control group in clinical trials to compare with actual treatments.
+Conditional probability	A probability calculation that takes into account the occurrence of one event and finds the probability of another event given that the first event has occurred.
+What event occurs when knowing a specific event has taken place allows us to revise the probability of another event being true?	<img src="page_2_figure.png">
+What is the representation of the intersection of sets A and a partition in a mathematical proof?	<img src="page_6_figure.png">
