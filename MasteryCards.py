@@ -135,7 +135,7 @@ def save_flashcards_to_tsv(flashcards):
             tsv_file.write(f"{front}\t{back}\n")
 
 # Main Execution
-pdf_file = "practice_text.pdf"  # Replace with your PDF file name
+pdf_file = input("Enter the PDF file name (with extension): ").strip()
 
 # Process captions from figures
 figure_flashcards = extract_figures_with_captions(pdf_file)

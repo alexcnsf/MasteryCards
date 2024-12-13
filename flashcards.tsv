@@ -18,3 +18,69 @@ Conditional Probability	The revised probability of an event A after learning tha
 Conditional Probability	The probability of an event occurring given that another event has occurred, which is calculated by dividing the probability of the intersection of the two events by the probability of the other event.
 Conditional Probability	The probability of an event occurring given that another event has occurred. It is calculated as the probability of the intersection of the two events (A ∩ B) divided by the probability of the conditioning event (D).
 Uniform Coin	A coin where the occurrence of heads or tails is equally likely, with a probability of 0.5 for each outcome. In the given problem, the presence of two fair coins and three coins with a head on each side introduces a non-uniform probability distribution for a randomly selected coin. However, the probability of getting a head is still higher than the probability of getting a tail.
+What is the event that occurs in both event A and event B?	Image placeholder
+What is the representation of the intersection of a set and various events in a proof of a mathematical theorem?	Image placeholder
+Conditional Probability	The updated probability of an event A after observing that event B has occurred, which is calculated by considering the set of outcomes that are included in both events A and B.
+Conditional Probability	The probability of an event A given that another event B has occurred, denoted as Pr(A|B). It is computed as the proportion of the total probability of B that is represented by the probability of A and B occurring together, Pr(A∩B).
+Conditional Probability	The probability of occurrence of an event A, given that event B has already occurred.
+Multiplication Rule for Conditional Probabilities	A rule that states that the probability of two events occurring is the product of the probability of one event and the conditional probability of the second event given the first event.
+Rolling of Dice	A simple experiment in which two dice are rolled until the sum reaches either 7 or 8.
+Event	A set of outcomes of an experiment that can be identified and measured.
+Sample Space	The set of all possible outcomes of an experiment.
+Probability	A measure of the likelihood of an event occurring, usually represented as a number between 0 and 1.
+Conditional Probability	The probability of an event occurring given that another event has occurred, denoted as P(A|B).
+Partition	A collection of events B1, ..., Bk in a sample space S such that the events are disjoint and their union covers the entire sample space, i.e., k i=1 Bi = S.
+Law of Total Probability	A theorem stating that for every event A in a sample space S, if the events B1, ..., Bk form a partition of S and Pr(Bj) > 0 for j = 1, ..., k, then Pr(A) = Σ j=1 k Pr(Bj)Pr(A|Bj).
+Conditional Probability	The probability of an event A occurring given that another event B has occurred, denoted as Pr(A|B).
+Sample Space	The set of all possible outcomes or results of an experiment or random phenomenon.
+Event	A set of outcomes or results of an experiment or random phenomenon that satisfy a certain condition or property.
+Bayesian inference	The process of using Bayes' theorem to update the probability of a hypothesis or a parameter based on new data or evidence.
+Prior distribution	The initial probability distribution assigned to a parameter or hypothesis before observing any data.
+Sample space	The set of all possible outcomes or events in a probability experiment or study.
+Event	A set of outcomes or a happening in a probability experiment or study.
+Conditional probability	The probability of an event occurring given that another event has occurred.
+Bayes' theorem	A mathematical formula used to update the probability of a hypothesis or a parameter based on new data or evidence.
+Mixture distribution	A probability distribution that represents the combination of two or more underlying distributions or populations.
+Hypothesis	A statement or assumption made about a population or phenomenon that is tested or verified through experimentation or observation.
+Parameter	A numerical value or set of values that characterizes a probability distribution or a model.
+Augmented Experiment	An experiment that includes the potential or hypothetical observation of additional information to calculate probabilities, even if it is not actually observed.
+Conditional Probability	The probability of an event given that another event has occurred. In this context, it is assumed that the experiment includes outcomes that determine the values of quantities such as p.
+Augmented Experiment	An experiment that includes a portion of the sample space that would be observed if the experiment were to continue indefinitely.
+Conditional Probability	The revised probability of an event A after learning that event B (with Pr(B) > 0) has occurred, denoted by Pr(A|B) and computed as Pr(A ∩ B) / Pr(B).
+Multiplication Rule for Conditional Probabilities	A formula for computing Pr(A ∩ B) as Pr(B) × Pr(A | B), often used when it is easy to assess the conditional probability Pr(A | B) directly.
+Partition	A collection of disjoint events whose union is the entire sample space, chosen to reduce uncertainty by learning which one of the partition events occurs.
+Law of Total Probability	A rule for combining conditional probabilities of an event A given each event in a partition to get the overall probability Pr(A).
+Independent Events	Events A and B are independent if the probability of A occurring is not affected by whether or not B occurs, and vice versa.
+Conditional Independence	Events A and B are conditionally independent given event C if Pr(A | C) = Pr(A) and Pr(B | C) = Pr(B) whenever Pr(C) > 0.
+Probability of the fourth ball being blue (Exercise 5)	The probability that the first three balls will be red and the fourth ball will be blue in the scenario where a box contains r red balls and b blue balls, one ball is selected at random, returned to the box, and k additional balls of the same color are put in, and the process is repeated until four balls are selected.
+Conditional Probability	The probability of an event given that another event has occurred.
+Independent Events	Events that occur independently of each other, where the occurrence of one event does not affect the probability of the other event.
+Random Sampling	Selecting an item or an event from a population or sample space, where each item or event has an equal chance of being selected.
+What are the outcomes that both belong to an event A and event B, also known as the intersection of A and B?	Image placeholder
+What are the key events in a partition that intersect with the set A in a given proof?	Image placeholder
+Conditional Probability	The updated probability of an event A after learning that event B has occurred, often denoted as P(A|B), where B is the event that has been observed.
+Definition of Conditional Probability	The conditional probability of event A given event B is the probability of A occurring when event B has already occurred.
+Bayes' Theorem	(Note: This term does not have a clear definition in this context, but it is likely a reference to Bayes' theorem relating conditional probability to probability updating.)
+Gambler's Ruin Problem	(Note: This term does not have a clear definition in this context, but it is likely a reference to a problem in probability theory related to a gambler's financial ruin.)
+Probability of the event given that another event has occurred (Pr(A|B))	The probability of event A occurring given that event B has already occurred, calculated as the proportion of total probability Pr(B) represented by the probability of both events occurring together, Pr(A ∩ B).
+Placebo	A treatment that is supposed to be neither helpful nor harmful; given to patients to serve as a control group in clinical trials.
+Event	A set of outcomes or occurrences that can happen in a probability space.
+Random Variable	A variable whose possible values are the outcomes of a random experiment or process.
+Probability Space	A set of outcomes or events, and a set of probabilities assigned to each event, which together define a random experiment or process.
+Multiplication Rule for Conditional Probabilities	A mathematical rule that states that the probability of a conjunction of two events (A and B) is equal to the probability of event B times the conditional probability of event A given that event B has occurred.
+Bayes' Formula	A formula that expresses the probability of an event occurring given that another event has occurred, using the concept of conditional probability.
+Total Probability Formula	A formula that expresses the probability of an event occurring, using the concept of conditional probability and the product of probabilities of successive conditional events.
+Multiplication Rule	A rule that states that the probability of a sequence of events occurring is equal to the product of the probabilities of each event occurring, given that the previous events have occurred.
+Conditional Version of the Multiplication Rule	A version of the multiplication rule that is applicable when the probability of an event is conditioned on the occurrence of another event.
+Partition	A set of pairwise disjoint events B1, ..., Bk in a sample space S such that union of B1, ..., Bk is equal to S.
+Law of Total Probability	A theorem stating that the probability of an event A in a sample space S can be calculated by summing the products of the probabilities of each event Bi in a partition of S and the conditionals of A given Bi, provided that Pr(Bj) > 0 for all j.
+Bayesian estimation	The process of estimating the proportion of successes among all patients who might receive a treatment, using prior probabilities and updating them based on the observed data.
+Augmented Experiment	An experiment that is extended to include the potential or hypothetical observation of additional information to help calculate probabilities.
+Augmented Experiment (Explicit Application)	The explicit assumption that there exists an infinite sequence of patients who could be treated with imipramine, allowing the sample space to consist of infinite sequences of symbols, where each coordinate represents a patient's outcome (success or failure).
+Augmentation	The expansion or modification of an experiment to include additional information or possibilities, even if it is not explicitly mentioned or observable.
+Experiment	A procedure or process that involves uncertainty and produces a set of outcomes, often used to measure or determine probability.
+Independent Events	Events that do not influence each other's probability of occurrence, meaning that the probability of one event does not change based on the occurrence of another event.
+Probability	A measure of the likelihood or chance of an event occurring, often expressed as a number between 0 (impossible) and 1 (certain).
+Sampling	The process of selecting a subset of outcomes from a larger set of possible outcomes, often used to describe the selection of elements from a probability space.
+Bayes' Law	A formula used to compute the conditional probability of an event A given another event B, by rearranging the definition of conditional probability.
+Probability of Complement	The probability of an event not occurring, represented as P(A') or P(~A), is the complement of the probability of the event occurring.
