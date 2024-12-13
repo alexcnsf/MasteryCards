@@ -188,14 +188,101 @@ def extract_figures_with_captions(pdf_path):
             for line in block["lines"]:
                 for span in line["spans"]:
                     if "Figure" in span["text"] and span["size"] > 10:
+                        is_bold = "Bold" in span["font"] or "Black" in span["font"]
                         x0, y0, x1, y1 = span["bbox"]
 
-                        # Temporary large crop area
-                        cropped_area = fitz.Rect(x0 - 25, y0 - 10, x1 + 350, y1 + 500)
-                        pix = page.get_pixmap(clip=cropped_area)
+                        if is_bold and x0 < 50:  # Left margin condition
+                            print(f"Found bold 'Figure' in left margin on page {page_num + 1}")
 
-                        # Save initial large image
-                        image_filename = f"page_{page_num + 1}_figure.png"
-                        image_path = os.path.join(MEDIA_FOLDER, image_filename)
-                        pix.save(image_path
+                            # Temporary large crop area
+                            cropped_area = fitz.Rect(x0 - 25, y0 - 10, x1 + 350, y1 + 500)
+                            pix = page.get_pixmap(clip=cropped_area)
+
+                            # Save initial large image
+                            temp_image_path = os.path.join(MEDIA_FOLDER, "temp_image.png")
+                            pix.save(temp_image_path)
+
+                            # Detect white margin
+                            new_bottom = detect_white_margin(temp_image_path)
+                            final_cropped_area = fitz.Rect(x0 - 25, y0 - 10, x1 + 350, y0 + new_bottom)
+
+                            # Render the final cropped area
+                            final_pix = page.get_pixmap(clip=final_cropped_area)
+                            image_filename = f"page_{page_num + 1}_figure.png"
+                            image_path = os.path.join(MEDIA_FOLDER, image_filename)
+                            final_pix.save(image_path)
+
+                            # Find the corresponding caption
+                            caption = next((cap[1] for cap in captions if cap[0] in span["text"]), "None")
+                            refined_caption = process_caption_with_llm(caption)
+
+                            flashcards.append((refined_caption, f"<img src=\"{image_filename}\">"))
+    pdf_document.close()
+    return flashcards
+
+def save_flashcards_to_tsv(flashcards):
+    """Save flashcards to a TSV file."""
+    with open(ANKI_OUTPUT, "w") as tsv_file:
+        for front, back in flashcards:
+            tsv_file.write(f"{front}\t{back}\n")
+
+def create_combined_flashcards(pdf_path, max_chunks=3):
+    """Generate flashcards from both text chunks and figures."""
+    print("Extracting text chunks and generating flashcards...")
+    text = extract_text_from_pdf(pdf_path)
+    chunks = chunk_text(text)[:max_chunks]
+    raw_flashcards = generate_flashcards_with_llm(chunks)
+    text_flashcards = []
+    for raw_output in raw_flashcards:
+        text_flashcards.extend(parse_llm_output(raw_output))
+
+    print("Extracting figures and captions...")
+    figure_flashcards = extract_figures_with_captions(pdf_path)
+
+    combined_flashcards = text_flashcards + figure_flashcards
+    save_flashcards_to_tsv(combined_flashcards)
+    print(f"Combined flashcards saved to {ANKI_OUTPUT}")
+
+def get_anki_media_folder():
+    """Determine the path to Anki's media folder based on the OS."""
+    user_folder = "User 1"  # Replace with your Anki profile name if it's not "User 1"
+    if platform.system() == "Darwin":  # macOS
+        return os.path.expanduser(f"~/Library/Application Support/Anki2/{user_folder}/collection.media")
+    elif platform.system() == "Windows":  # Windows
+        return os.path.expandvars(f"%APPDATA%\\Anki2\\{user_folder}\\collection.media")
+    elif platform.system() == "Linux":  # Linux
+        return os.path.expanduser(f"~/.local/share/Anki2/{user_folder}/collection.media")
+    else:
+        raise Exception("Unsupported operating system.")
+
+def move_images_to_anki(source_folder):
+    """Move PNG images from the source folder to Anki's media folder."""
+    anki_media_folder = get_anki_media_folder()
+    if not os.path.exists(anki_media_folder):
+        raise FileNotFoundError(f"Anki media folder not found at {anki_media_folder}")
+
+    # Ensure the source folder exists
+    if not os.path.exists(source_folder):
+        raise FileNotFoundError(f"Source folder not found at {source_folder}")
+
+    # Move PNG files to Anki's media folder
+    for filename in os.listdir(source_folder):
+        if filename.endswith(".png"):
+            source_path = os.path.join(source_folder, filename)
+            destination_path = os.path.join(anki_media_folder, filename)
+            shutil.move(source_path, destination_path)
+            print(f"Moved: {filename} to {anki_media_folder}")
+
+# Main Execution
+pdf_file = input("Enter the path to the PDF file: ")
+create_combined_flashcards(pdf_file, max_chunks=3)
+
+time.sleep(2)
+
+# Move images to Anki media folder
+try:
+    move_images_to_anki(MEDIA_FOLDER)
+    print("All images have been successfully moved to Anki's media folder.")
+except Exception as e:
+    print(f"Error: {e}")
 
