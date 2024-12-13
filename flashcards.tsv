@@ -1231,3 +1231,47 @@ Machine Probability	The probability of a machine producing defective parts, whic
 Random Event	An event that has multiple possible outcomes and is not predictable, often represented by chance or probability.
 What are the outcomes common to both Event A and Event B?	No image available
 What is the typical representation of a partition in the context of a mathematical theorem?	No image available
+What is the event that both A and B contain?	Image placeholder
+What are the different events in a partition that intersect with set A in a mathematical proof?	Image placeholder
+Conditional Probability	The probability of an event A occurring given that event B has occurred, denoted as Pr(A|B), is computed as the proportion of the total probability Pr(B) that is represented by Pr(A∩B), intuitively the proportion of B that is also part of A.
+Conditional Probability	The probability of an event occurring given that another event has occurred, denoted as P(A|B) and read as "the probability of A given B".
+Independent Events	Events A and B are independent if the occurrence of one event does not affect the probability of the other event, denoted as P(A∩B) = P(A) × P(B).
+Event	A set of outcomes of an experiment, denoted as A, B, or C, where each outcome has a specific probability.
+Placebo	A treatment that is intended to have no significant effect on the outcome of an experiment, often used as a control group.
+Conditional Probability	The probability of an event A occurring given that another event B has occurred, denoted as Pr(A|B), is defined as the probability of the intersection of the two events divided by the probability of event B.
+Multiplication Rule for Conditional Probabilities	The Multiplication Rule states that if the probability of two events A and B occurring is Pr(A ∩ B), then it can be calculated as Pr(B) × Pr(A |B) when Pr(B) > 0, or Pr(A) × Pr(B |A) when Pr(A) > 0.
+Independent Events	Two events A and B are said to be independent if the occurrence of one event does not affect the probability of the other event occurring. In this case, Pr(A ∩ B) = Pr(A) × Pr(B).
+Conditional Independence	Two events A and B are said to be conditionally independent given another event C if Pr(A ∩ B|C) = Pr(A|C) × Pr(B|C).
+Conditional Probability Rule	A formula for computing the probability of a sequence of events given the occurrence of another event, stating that the probability is equal to the product of the probabilities of each event given the occurrence of the previous event in the sequence and the given event.
+Unknown Term	No definition available.
+Unknown Term	No definition available.
+Conditional Version of Law of Total Probability	A probability formula that extends the Law of Total Probability to be used in conditional probability, where the probability of an event A given another event C is calculated as the sum of the probability of each outcome in a partition of C, weighted by the conditional probability of A given each outcome and the probability of that outcome.
+Augmented Experiment	An idea where an experiment is modified to include additional structure to facilitate the calculation of probabilities, by imagining additional elements that make a partition available.
+Bayes' theorem	Bayes' theorem is a method for updating the probability of a hypothesis based on new evidence. In the context of the example, it is used to calculate the probability of success based on the proportion of successes among all patients who might receive the treatment.
+Compositions (of patients)	The composition of patients refers to the possible combinations or proportions of successes and failures among all patients who might receive treatment in a clinical trial.
+Hypergeometric probability (model)	The hypergeometric probability model is a statistical model that assumes that each patient has a fixed probability of success, which is determined by the composition of the collection of patients.
+Imipramine treatment group	The imipramine treatment group refers to a group of patients who received imipramine treatment in a clinical trial.
+Mixture (of patients)	The mixture of patients refers to the collection of all available patients from which patients were selected for the treatment group in a clinical trial.
+P (success probability)	P is a probability of success, which represents the proportion of successes among all patients who might receive the treatment.
+Pr (E 1|Bj)	Pr (E 1|Bj) is the conditional probability of the event E 1 (the first patient in the imipramine group has a success) given the event Bj (the sample was drawn from a collection with proportion (j-1)/10 of successes).
+Sampling (without replacement)	Sampling without replacement refers to the process of selecting patients from a collection of patients and then not returning them to the collection.
+Augmented Experiment	An experiment that can be extended or imagined to include the potential or hypothetical observation of any additional information that would be useful for calculating probabilities of interest.
+Sample Space	The set of all possible outcomes or results of an experiment, which can include hypothetical or potential outcomes that are not actually observed.
+Conditional Probability	Not explicitly defined in this passage, but it seems to be related to the concept of augmented experiments and the calculation of probabilities based on additional information.
+Infinity	The concept of infinity refers to an indefinitely long or endless sequence of events or outcomes, where it is assumed that the sequence can continue forever.
+Experiment	An experiment is an action or event where some outcome or result is observed, and it can be repeated multiple times with different outcomes, allowing for the collection of data.
+Quantities	Quantities refer to specific attributes or measures that can be determined or calculated within a particular experiment or situation.
+Conditional Probability	Conditional probability is the probability of an event occurring given that another event has already occurred or is known to have occurred.
+Event	An event is a specific occurrence or outcome that can happen within a given scenario or situation.
+Random Outcomes	Random outcomes are the possible results or outcomes that can occur from a random process or experiment, where each outcome has a certain probability of occurring.
+Sampling Space	A sampling space is the set of all possible outcomes or results that can occur from a given experiment or process.
+Conditional Probability	The probability of an event A occurring given that another event B has occurred, denoted by Pr(A|B) and computed as Pr(A ∩ B) / Pr(B).
+Multiplication Rule for Conditional Probabilities	A rule used to compute Pr(A ∩ B) = Pr(B) Pr(A|B) when it is easy to assess the conditional probability Pr(A|B) directly.
+Partition of Events	A collection of disjoint events whose union is the entire sample space, chosen so that an important source of uncertainty is reduced if we learn which one of the partition events occurs.
+Law of Total Probability	A rule used to combine conditional probabilities to get Pr(A) if the conditional probability of an event A is available given each event in a partition.
+Conditional Probability	The probability of an event occurring given that another event has occurred, often denoted as P(A|B) and read as "the probability of A given B".
+Conditional Probability of Intersection	The probability of two events occurring given the occurrence of a third event, denoted as P(A ∩ B | D) which reads as "the probability of A and B occurring given D".
+Independent Events	Events that occur independently of each other, meaning the occurrence of one event does not affect the probability of the other event occurring.
+Machine States	The different states a machine can be in, including good working order, wearing down, and needing maintenance, each with its own probability of producing defective parts.
+Random Variable	A variable that takes on a random value from a set of possible values, in this case, the probability of obtaining a head when tossing a randomly selected coin.
+Defective Parts	Parts produced by a machine that do not function properly, with three different probabilities of occurrence depending on the machine's state of repair.

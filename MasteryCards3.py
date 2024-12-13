@@ -20,6 +20,21 @@ You are tasked with analyzing a provided caption for a figure and creating the f
 ### BEGIN FLASHCARD ###
 Prompt: [Write a general question or description suitable for the front of a flashcard. The prompt should focus on the broader concept or idea represented by the figure, rather than overly specific details. Ensure the prompt provides enough context for a learner to understand the figure's purpose.]
 ### END FLASHCARD ###
+
+"""
+
+KEYWORD_PROMPT = """
+You are tasked with extracting structured information from the provided text. For each keyword or concept, provide the following in a consistent format:
+
+1. **Term**: The key term or concept.
+2. **Definition**: A concise and clear definition of the term or concept.
+
+Format the output exactly like this (including all symbols and delimiters):
+
+### BEGIN ENTRY ###
+Term: [Term]
+Definition: [Definition]
+### END ENTRY ###
 """
 
 # Initialize Groq client
@@ -39,6 +54,7 @@ def save_image(image, file_name):
 # Extract and save figure images
 def extract_images_from_page(page, caption_label):
     image_list = []
+    ensure_directory(MEDIA_FOLDER)
     for img_index, img in enumerate(page.get_images(full=True), start=1):
         xref = img[0]
         base_image = page.get_pixmap(xref)
@@ -62,7 +78,6 @@ def extract_captions_from_text(page_text, max_words=25):
         captions.append((figure_label, caption))
     return captions
 
-# Process caption with LLM
 def process_caption_with_llm(caption):
     response = client.chat.completions.create(
         messages=[
@@ -75,12 +90,12 @@ def process_caption_with_llm(caption):
     match = re.search(r"### BEGIN FLASHCARD ###\nPrompt: (.*?)\n### END FLASHCARD ###", refined_caption, re.DOTALL)
     return match.group(1).strip() if match else "Error in LLM response"
 
-# Extract figures and captions
 def extract_figures_with_captions(pdf_path):
     pdf_document = fitz.open(pdf_path)
     ensure_directory(MEDIA_FOLDER)
     flashcards = []
     for page_num in range(len(pdf_document)):
+        print(f"Processing page {page_num + 1}...")
         page = pdf_document[page_num]
         page_text = page.get_text("text")
         captions = extract_captions_from_text(page_text)
@@ -90,6 +105,50 @@ def extract_figures_with_captions(pdf_path):
             image_placeholder = ", ".join(images) if images else "No image available"
             flashcards.append((refined_caption, image_placeholder))
     pdf_document.close()
+    return flashcards
+
+# PDF Text Extraction
+def extract_text_from_pdf(pdf_path):
+    with open(pdf_path, 'rb') as file:
+        reader = PyPDF2.PdfReader(file)
+        text = ""
+        for page in reader.pages:
+            text += page.extract_text() + "\n"
+    return text
+
+def chunk_text(text, chunk_size=CHUNK_SIZE):
+    chunks = []
+    while len(text) > chunk_size:
+        split_point = text[:chunk_size].rfind("\n\n")
+        if split_point == -1:
+            split_point = chunk_size
+        chunks.append(text[:split_point].strip())
+        text = text[split_point:].strip()
+    if text:
+        chunks.append(text)
+    return chunks
+
+def generate_flashcards_with_llm(chunks):
+    flashcards = []
+    for i, chunk in enumerate(chunks, start=1):
+        print(f"Processing chunk {i}/{len(chunks)}...")
+        response = client.chat.completions.create(
+            messages=[
+                {'role': 'system', 'content': KEYWORD_PROMPT},
+                {'role': 'user', 'content': chunk}
+            ],
+            model=LLM_MODEL
+        )
+        output = response.choices[0].message.content
+        entries = re.findall(r"### BEGIN ENTRY ###(.*?)### END ENTRY ###", output, re.DOTALL)
+        for entry in entries:
+            term_match = re.search(r"Term: (.*?)\n", entry)
+            definition_match = re.search(r"Definition: (.*?)\n", entry)
+
+            term = term_match.group(1).strip() if term_match else "Unknown Term"
+            definition = definition_match.group(1).strip() if definition_match else "No definition available."
+
+            flashcards.append((term, definition))
     return flashcards
 
 # Save flashcards to TSV
@@ -104,6 +163,12 @@ pdf_file = input("Enter the PDF file name (with extension): ").strip()
 # Process captions from figures
 figure_flashcards = extract_figures_with_captions(pdf_file)
 save_flashcards_to_tsv(figure_flashcards)
+
+# Process keywords and concepts from text
+text = extract_text_from_pdf(pdf_file)
+chunks = chunk_text(text)
+text_flashcards = generate_flashcards_with_llm(chunks)
+save_flashcards_to_tsv(text_flashcards)
 
 print("All flashcards have been successfully saved to the TSV file!")
 
