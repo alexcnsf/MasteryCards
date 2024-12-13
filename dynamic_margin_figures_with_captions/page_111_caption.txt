@@ -1,0 +1,2 @@
+Figure: dynamic_margin_figures_with_captions/page_111_figure_margin.png
+Caption: contains the histogram of the 100 observed service times with r = 100. One sees that the numbers of observed service times in the subintervals

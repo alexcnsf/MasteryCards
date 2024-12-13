@@ -1,0 +1,2 @@
+Figure: dynamic_margin_figures_with_captions/page_91_figure_margin.png
+Caption: The condi- tional p.d.f. g1(x|y0) is pro- portional to f (x, y0). x y f(x, y) f(x, y0) y0 and g1(x|y) = 0 for x

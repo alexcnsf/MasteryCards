@@ -1,0 +1,2 @@
+Figure: dynamic_margin_figures_with_captions/page_67_figure_margin.png
+Caption: An example of a joint p.d.f. x y f(x, y) C

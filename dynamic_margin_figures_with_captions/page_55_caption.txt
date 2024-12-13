@@ -1,0 +1,2 @@
+Figure: dynamic_margin_figures_with_captions/page_55_figure_margin.png
+Caption: An example of a c.d.f. 1 z3 z2 z1 z0 0 x1 x2 x3 x4 x F(x) Section 1.10. Similarly, the fact that Pr(X ≤x)

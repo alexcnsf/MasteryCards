@@ -1,0 +1,2 @@
+Figure: dynamic_margin_figures_with_captions/page_127_figure_margin.png
+Caption: The p.d.f. of the uniform distribution on the interval [0, 1] together with the p.d.f.’s of the minimum and maximum of samples of size n

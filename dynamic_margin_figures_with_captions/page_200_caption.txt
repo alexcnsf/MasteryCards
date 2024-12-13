@@ -1,0 +1,2 @@
+Figure: dynamic_margin_figures_with_captions/page_200_figure_margin.png
+Caption: Mean and vari- ance of efﬁcient investment portfolios. Mean portfolio return 4000 0 5000 6000 7000 8000 9000 10,000 Variance of portfolio return 1.5"108 5"107

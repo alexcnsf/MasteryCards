@@ -1,0 +1,2 @@
+Figure: dynamic_margin_figures_with_captions/page_48_figure_margin.png
+Caption: An example of a p.d.f. a b x f(x) all values of X would be impossible and X couldn’t assume any value. What happens is

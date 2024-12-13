@@ -57,3 +57,8 @@ OCR: Tesseract
 Image Processing: Pillow
 Flashcard Creation: genanki
 LLM Integration: OpenAI API or similar
+
+
+export GROQ_API_KEY="your_api_key_here"
+echo $GROQ_API_KEY
+

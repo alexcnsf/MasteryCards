@@ -1,0 +1,2 @@
+Figure: dynamic_margin_figures_with_captions/page_69_figure_margin.png
+Caption: The subset S0 of the support S where x ≥y in Example 3.4.8. x y 1 1 (1, 1) y ! x2 y ! x

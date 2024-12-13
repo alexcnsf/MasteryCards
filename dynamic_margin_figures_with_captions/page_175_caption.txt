@@ -1,0 +1,2 @@
+Figure: dynamic_margin_figures_with_captions/page_175_figure_margin.png
+Caption: The p.d.f. of a random variable X together with the p.d.f.’s of X + 3 and −X. Note that the spreads of all three distributions

@@ -1,0 +1,2 @@
+Figure: dynamic_margin_figures_with_captions/page_208_figure_margin.png
+Caption: The conditional p.d.f. of P given X = 18 in Example 4.7.8. The marginal p.d.f. of P (prior to observing X) is also shown. p

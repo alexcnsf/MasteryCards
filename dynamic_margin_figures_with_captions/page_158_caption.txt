@@ -1,0 +1,2 @@
+Figure: dynamic_margin_figures_with_captions/page_158_figure_margin.png
+Caption: The curve y = xf (x) for the Cauchy distribution. x f(x) 1 2p 1 1 2 3 2 3 1 2p  The Expectation

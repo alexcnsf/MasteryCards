@@ -1,0 +1,2 @@
+Figure: dynamic_margin_figures_with_captions/page_138_figure_margin.png
+Caption: The generation following {Aa, Aa}. a A a A Aa aa AA aA Example 3.10.6 Plant Breeding Experiment. A botanist is studying a certain variety
