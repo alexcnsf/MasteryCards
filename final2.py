@@ -277,12 +277,11 @@ def move_images_to_anki(source_folder):
 pdf_file = input("Enter the path to the PDF file: ")
 create_combined_flashcards(pdf_file, max_chunks=3)
 
-time.sleep(2)
-
+'''
 # Move images to Anki media folder
 try:
     move_images_to_anki(MEDIA_FOLDER)
     print("All images have been successfully moved to Anki's media folder.")
 except Exception as e:
     print(f"Error: {e}")
-
+'''
