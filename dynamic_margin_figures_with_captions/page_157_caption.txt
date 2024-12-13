@@ -1,2 +1,0 @@
-Figure: dynamic_margin_figures_with_captions/page_157_figure_margin.png
-Caption: The mean of a continuous distribution. x E(X) f(x) the rod at each point x is equal to f (x), then the center of gravity

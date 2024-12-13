@@ -1,2 +1,0 @@
-Figure: dynamic_margin_figures_with_captions/page_198_figure_margin.png
-Caption: The shaded region is where the joint p.d.f. of (X, Y) is constant and nonzero in Example 4.6.5. The vertical line indicates the values of

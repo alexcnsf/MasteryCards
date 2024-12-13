@@ -1,2 +1,0 @@
-Figure: dynamic_margin_figures_with_captions/page_72_figure_margin.png
-Caption: The probability of a rectangle. a c d b x y A deﬁned as the function F such that for all values of x and

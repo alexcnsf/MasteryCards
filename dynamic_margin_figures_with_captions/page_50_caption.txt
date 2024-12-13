@@ -1,2 +1,0 @@
-Figure: dynamic_margin_figures_with_captions/page_50_figure_margin.png
-Caption: The p.d.f. for the uniform distribution on the interval [a, b]. a b x f(x) Th p.d.f. (3.2.6) is sketched in Fig. 3.5. As an

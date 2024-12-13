@@ -1,2 +1,0 @@
-Figure: dynamic_margin_figures_with_captions/page_66_figure_margin.png
-Caption: The joint p.f. of X and Y in Example 3.4.3. f(x, y) x y 1 1 2 3 2 3 4 This joint p.f. is

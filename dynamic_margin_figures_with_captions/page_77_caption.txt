@@ -1,2 +1,0 @@
-Figure: dynamic_margin_figures_with_captions/page_77_figure_margin.png
-Caption: Computing f1(x) from the joint p.f. x y x3 ····· ····· x2 x1 x4 Deﬁnition 3.5.1 Marginal c.d.f./p.f./p.d.f. Suppose that X and Y have a

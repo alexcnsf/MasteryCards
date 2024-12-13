@@ -1,2 +1,0 @@
-Figure: dynamic_margin_figures_with_captions/page_123_figure_margin.png
-Caption: The set Ay in Example 3.9.4 and in the proof of Theorem 3.9.4. Ay y y

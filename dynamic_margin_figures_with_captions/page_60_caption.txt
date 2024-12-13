@@ -1,2 +1,0 @@
-Figure: dynamic_margin_figures_with_captions/page_60_figure_margin.png
-Caption: The c.d.f. of a uniform distribution indi- cating how to solve for a quantile. 0.2 1.0 0.8 0.6 p 0.4 0 1 2 F1(p) Cumulative

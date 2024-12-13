@@ -1,2 +1,0 @@
-Figure: dynamic_margin_figures_with_captions/page_84_figure_margin.png
-Caption: The subset S0 where x + y ≤1 in Example 3.5.9. x 1 1 0 S S0 y

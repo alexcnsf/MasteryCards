@@ -1,2 +1,0 @@
-Figure: dynamic_margin_figures_with_captions/page_178_figure_margin.png
-Caption: Two binomial distributions with the same mean (2.5) but different variances. 0.05 0.10 0.15 0.20 0.25 0.30 x p.f. 2 0 4 6 8 10

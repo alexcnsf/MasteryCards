@@ -13,18 +13,18 @@ CHUNK_SIZE = 2500
 
 # Define the prompt for refining captions
 CAPTION_PROMPT = """
-You are tasked with creating the front of a flashcard from a provided caption or description of a figure. Use the following strict format and instructions:
+You are tasked with analyzing a provided caption for a figure and creating the front of a flashcard. Your goal is to interpret what the figure generally represents based on the caption and generate a meaningful, concise question or description for the front of the flashcard. Use the following strict format and instructions:
 
 ### BEGIN FLASHCARD ###
-Prompt: [Refine the caption into a clear and concise question or description suitable for the front of a flashcard. The prompt should provide enough context for the learner to recall the figure or concept. Avoid generic or vague phrases. Ensure the prompt is concise but specific.]
+Prompt: [Write a general question or description suitable for the front of a flashcard. The prompt should focus on the broader concept or idea represented by the figure, rather than overly specific details. Ensure the prompt provides enough context for a learner to understand the figure's purpose.]
 ### END FLASHCARD ###
 
 Guidelines:
-- Include key details from the caption that are necessary for understanding the figure or concept.
-- Do not include any additional explanations, footnotes, or irrelevant information outside the specified format.
+- Emphasize the general idea or purpose of the figure.
+- Avoid using overly specific or technical phrases unless necessary.
 - Ensure clarity and conciseness in the flashcard prompt.
-- Avoid any redundancy or overcomplication.
-- Focus on turning the caption into an engaging and meaningful question or description that can serve as the front of a flashcard.
+- Do not include any additional explanations, footnotes, or irrelevant information outside the specified format.
+- If the caption lacks sufficient context, infer a broader interpretation of what the figure might represent.
 
 Provide the refined flashcard prompt in the exact format described above. Do not include explanations or justifications for your output.
 """
@@ -38,7 +38,7 @@ def ensure_directory(path):
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 # Helper Functions
-def extract_captions_from_text(page_text, max_words=25):
+def extract_captions_from_text(page_text, max_words=50):
     """Extract captions for labeled figures like 'Figure 2.1'."""
     pattern = r"(Figure\s\d+\.\d+(\.\d+)?)"
     matches = re.finditer(pattern, page_text)
@@ -98,17 +98,35 @@ def extract_figures_with_captions(pdf_path):
             for line in block["lines"]:
                 for span in line["spans"]:
                     if "Figure" in span["text"] and span["size"] > 10:
+                        is_bold = "Bold" in span["font"] or "Black" in span["font"]
                         x0, y0, x1, y1 = span["bbox"]
-                        cropped_area = fitz.Rect(x0 - 25, y0 - 10, x1 + 350, y1 + 500)
-                        pix = page.get_pixmap(clip=cropped_area)
-                        image_filename = f"page_{page_num + 1}_figure.png"
-                        image_path = os.path.join(MEDIA_FOLDER, image_filename)
-                        pix.save(image_path)
 
-                        caption = next((cap[1] for cap in captions if cap[0] in span["text"]), "None")
-                        refined_caption = process_caption_with_llm(caption)
+                        if is_bold and x0 < 50:  # Left margin condition
+                            print(f"Found bold 'Figure' in left margin on page {page_num + 1}")
 
-                        flashcards.append((refined_caption, f"<img src=\"{image_filename}\">"))
+                            # Temporary large crop area
+                            cropped_area = fitz.Rect(x0 - 25, y0 - 10, x1 + 350, y1 + 500)
+                            pix = page.get_pixmap(clip=cropped_area)
+
+                            # Save initial large image
+                            temp_image_path = os.path.join(MEDIA_FOLDER, "temp_image.png")
+                            pix.save(temp_image_path)
+
+                            # Detect white margin
+                            new_bottom = detect_white_margin(temp_image_path)
+                            final_cropped_area = fitz.Rect(x0 - 25, y0 - 10, x1 + 350, y0 + new_bottom)
+
+                            # Render the final cropped area
+                            final_pix = page.get_pixmap(clip=final_cropped_area)
+                            image_filename = f"page_{page_num + 1}_figure.png"
+                            image_path = os.path.join(MEDIA_FOLDER, image_filename)
+                            final_pix.save(image_path)
+
+                            # Find the corresponding caption
+                            caption = next((cap[1] for cap in captions if cap[0] in span["text"]), "None")
+                            refined_caption = process_caption_with_llm(caption)
+
+                            flashcards.append((refined_caption, f"<img src=\"{image_filename}\">"))
     pdf_document.close()
     return flashcards
 

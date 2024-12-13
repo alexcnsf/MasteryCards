@@ -1,2 +1,0 @@
-Figure: dynamic_margin_figures_with_captions/page_79_figure_margin.png
-Caption: The marginal p.d.f. of Y in Example 3.5.3. x 1 0 f2(y) This marginal p.d.f. of X is sketched in Fig. 3.17. Next, it can

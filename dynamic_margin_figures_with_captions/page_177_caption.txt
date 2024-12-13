@@ -1,2 +1,0 @@
-Figure: dynamic_margin_figures_with_captions/page_177_figure_margin.png
-Caption: The set of all means and variances of investment portfolios in Example 4.3.7. The solid vertical line shows the range of possible variances for portfoloios

@@ -1,2 +1,0 @@
-Figure: dynamic_margin_figures_with_captions/page_172_figure_margin.png
-Caption: The p.d.f.’s of two uniform distributions in Example 4.3.1. Both distributions have mean equal to 30, but they are spread out differently. 10 0 20

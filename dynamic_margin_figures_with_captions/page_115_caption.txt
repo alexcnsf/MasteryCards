@@ -1,2 +1,0 @@
-Figure: dynamic_margin_figures_with_captions/page_115_figure_margin.png
-Caption: The p.d.f. of Y = X2 in Example 3.8.4. y 1 0 g(y) Example 3.8.4 Deriving the p.d.f. of X2 when X Has a Uniform
