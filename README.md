@@ -21,7 +21,7 @@ Go ahead and install the all the requirements need for this project using:
 pip install -r requirements.txt
 ```
 
-Next [go to Groq](https://console.groq.com/keys) and generate an API key. 
+Next go to [Groq](https://console.groq.com/keys) and generate an API key. 
 
 Set the key in your terminal enviroment using:
 ```
@@ -32,8 +32,6 @@ You can check this is done correctly by running:
 ```
 echo $GROQ_API_KEY
 ```
-
-
 
 ## Running it
 
