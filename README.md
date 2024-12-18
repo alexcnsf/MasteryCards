@@ -128,6 +128,19 @@ Do not include placeholder phrases like "Not provided in the text" or "No defini
 """
 ```
 
+An example of a created flashcard is,  
+
+Front:
+```
+One-to-One Function
+```
+
+Back:
+```
+A function that maps each element in the input set to a unique element in the output set, with each output element corresponding to exactly one input element.
+```
+
+
 **2. Figure extraction and margin detection:**
 
 I detected figures by creating an a large array of the pixels around matches to Bolded words 'figure' using the library fitz and then used a function to detect large white margins to know where to crop a box around just the figure at.
