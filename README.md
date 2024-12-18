@@ -156,7 +156,7 @@ Here are some examples of extracted figures:
 
 ![Description](anki_media/page_6_figure.png)   
 ![Description](anki_media/page_59_figure.png)         
-![Description](anki_media/page_127_figure.png)
+![Description](anki_media/page_158_figure.png)
 
 
 **3. Prompt for caption summarization/generalization.**
