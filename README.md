@@ -59,7 +59,7 @@ Enter the PDF file name you want to analyze (ex: my_probability_textbook.pdf):
 
 **STEP 2: Input file path**
 
-In response to this you can type in the name or path to the file in your directory and press enter. This will then prompt something like this:
+In response to this you can type in name of your file in your directory and press enter. This will then prompt something like this:
 ```
 Enter the PDF file name (with extension): text1.pdf
 Processing chunk 1 of 220...
@@ -67,7 +67,7 @@ Processing chunk 2 of 220...
 Processing chunk 3 of 220...
 ```
 
-Expecting this to take a few minutes to complete.
+Expecting this to take about 15s per page to complete (in my experience).
 
 **STEP 3: Copying the Anki media files**
 
@@ -152,6 +152,10 @@ In this function you can see I use a **tolerance** of 250 to detect any white, o
 
 I use the Image function from PIL (Python Imaging Library) to take the snapshot and then run through the rows of the image from top to bottom to identify where the figure ends. This updated height value is then used to create an accurate png snapshot of the figure which is saved to the anki_media folder to later be passed to Anki 2.
 
+Here are some examples of extracted figures:
+
+![Description](anki_media/page_59_figure.png)       ![Description](anki_media/page_6_figure.png)       ![Description](anki_media/page_95_figure.png)
+
 
 **3. Prompt for caption summarization/generalization.**
 
@@ -201,6 +205,6 @@ Conditional Probability, Bayes’ Theorem, Law of Total Probability, Independent
 
 While these four where not: Partitions of a Sample Space, Mutual Independence, Mutually Exclusive Events, and Probability Trees
 
-2. **Quality** Unfortunately since the final set of flashcards for the entire curriculum of my probability class is 535 flashcards long I couldn't evaluate all of them. But for a smaller set of 72 flashcard from half of the subchapters in Chapter 2, I got the results that 68 of them were roughly correct while only 48 of them were clear, refered to a general topic (compared to an example in the textbook), and weren't a direct repeat of a previous flashcard.
+2. **Quality** Unfortunately since the final set of flashcards for the entire curriculum of my probability class is 535 flashcards long I couldn't evaluate all of them. But for a smaller set of 72 flashcard from half of the subchapters in Chapter 2, I got the results that 68 of them were roughly correct while only 48 of them refered to a general topic that was understandable (compared to an example in the textbook) and weren't direct repeats of previous flashcards.
 
-3. **Figure Accuracy** Over the 35 figures extracted from the textbook it got 34/35 extracted correctly and only missed Figure 3.9 which unexpectly is labelled under the figure.
+3. **Figure Accuracy** Over the 35 figures extracted from the textbook it extracted 34/35 correctly and only missed Figure 3.9 which unexpectly is labelled under the figure in the textbook.
