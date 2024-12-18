@@ -41,7 +41,7 @@ If you recieve the key you inputted it is working.
 
 **STEP 4: Download the Anki 2 application.**
 
-Go the [Anki 2 install page] (https://apps.ankiweb.net/) and press the download button. Follow the instructions and open the application once it is on your computer.  
+Go the [Anki 2 install page](https://apps.ankiweb.net/) and press the download button. Follow the instructions and open the application once it is on your computer.  
 
 ## Running it
 
@@ -73,7 +73,7 @@ Expecting this to take a few minutes to complete.
 
 Unfortunately since my numerous attempts to automize this have failed, you have to manually move the png files you have collected from your pdf to Anki media folder for them to be displayed on your flashcards.    
 
-To do this you have to copy the contents of the created folder **anki_media** in the working directory and paste it into the Anki media folder located at:  
+To do this you have to copy the contents of the created folder **anki_media** in your working directory and paste it into the Anki media folder located at:  
 
 - On MacOs: ~/Library/Application Support/Anki2/<YourProfileName>/collection.media  
 
@@ -87,13 +87,13 @@ Note: If you have not explicity logged into the Anki 2 application then your use
 
 Next you open the Anki2 application and press **Import Files**, then navigate to and select the **flashcards.tsv** file in your finder. This will create a new pop up window, here make sure there are only two columns in the **File** section and then press **Import** in the top right corner. After this it will go to a new Overview and Details page and you can close the window, returning you to the Anki2 application.
 
-Now are reading to select the **Default** deck you just imported and start studying!
+Now you are ready to select the **Default** deck and start studying!
 
 ## Key features In-depth
 
 **1. Prompt to collect accurate and general flashcards from the content in structured format**
 
-After a lot of fine tuning I used a prompt that provided me with flashcards that were general enough to cover full probability topics not just textbook specific examples while also creating enough flashcards on the subject. It insits upon a strict:
+After a lot of fine tuning I used a prompt that provided me with flashcards that were general enough to cover full probability topics (not just textbook specific examples) while also creating enough flashcards on the subject. It also insits upon a strict format for the responses to abide by so I can accurately parse the output, seen here:
 
 ```
 ### BEGIN ENTRY ###
@@ -101,7 +101,7 @@ Term: [Term]
 Definition: [Definition]
 ### END ENTRY ###
 ```
-format in the prompt for the responses to abide by so I can accurately parse the responses of the flashcard information I need. Here is the prompt:
+And here is the full prompt:
 
 ```
 KEYWORD_PROMPT = """You are tasked with extracting structured information from the provided text. For each keyword or concept, provide the following in a consistent format:
@@ -150,12 +150,12 @@ def detect_white_margin(image_path, tolerance=250, min_consecutive_white=15):
 ```
 In this function you can see I use a **tolerance** of 250 to detect any white, off-white, or close-to-white pixels as white and then set the **min_consecuive_white** value of 15 (found by trial and error) to be the number of these consecutive pixels to detect when there is an actual margin being detected.  
 
-I use the function Image from PIL (Python Imaging Library) tpo take the snapshot and then run through the rows of the image from top to bottom to identify where the figure ends. This updated height value is then used to create an accurate png snapshot of the figure which is saved to the anki_media folder to be later passed to Anki 2.
+I use the Image function from PIL (Python Imaging Library) to take the snapshot and then run through the rows of the image from top to bottom to identify where the figure ends. This updated height value is then used to create an accurate png snapshot of the figure which is saved to the anki_media folder to later be passed to Anki 2.
 
 
 **3. Prompt for caption summarization/generalization.**
 
-This is the second prompt I used to create structured front sides of flashcards for the figure flashcards. After scrapping the words around the figure references of the figure I am refering to, importantly including the caption for the figure, I input this into the LLM and ask it to understand what the figure is most likely showing and create a question for flashcard front about what the general topic and specific scenario looks like.
+This is the second prompt I used to create structured front sides of flashcards for the figure flashcards. After scrapping the words around the figure references, including the caption for the figure, I input this into the LLM and ask it to understand what the figure is most likely showing and create a question for flashcard front about what the general topic and specific scenario looks like.
 
 ```
 CAPTION_PROMPT = """
@@ -180,6 +180,19 @@ Provide the refined flashcard prompt in the exact format described above. Do not
 """
 ```
 
+Here is an example of a created figure flashcard:
+
+Front:
+
+```
+What is a joint probability distribution density function look like?
+```
+
+Back:
+
+![Description](anki_media/page_67_figure.png)
+
+
 ## Results:
 
 1. **Breadth** Of the 20 predecided topics to judge the breadth of the flashcards for the three chapters I selected these 16 were included in some terminology:
@@ -188,8 +201,6 @@ Conditional Probability, Bayes’ Theorem, Law of Total Probability, Independent
 
 While these four where not: Partitions of a Sample Space, Mutual Independence, Mutually Exclusive Events, and Probability Trees
 
-2. **Quality** Unfortunately since the final set of flashcards for the entire curriculum of my probability class is 535 flashcards long I couldn't evaluate all of them. But for a smaller set of 72 flashcard from half of the subchapters in Chapter 2, I got the results that 68 of them were correct while only 48 of them were clear, refered to a general topic (compared to an example in the textbook), and were also correct.
+2. **Quality** Unfortunately since the final set of flashcards for the entire curriculum of my probability class is 535 flashcards long I couldn't evaluate all of them. But for a smaller set of 72 flashcard from half of the subchapters in Chapter 2, I got the results that 68 of them were roughly correct while only 48 of them were clear, refered to a general topic (compared to an example in the textbook), and weren't a direct repeat of a previous flashcard.
 
 3. **Figure Accuracy** Over the 35 figures extracted from the textbook it got 34/35 extracted correctly and only missed Figure 3.9 which unexpectly is labelled under the figure.
-
-
