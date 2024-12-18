@@ -185,7 +185,7 @@ Here is an example of a created figure flashcard:
 Front:
 
 ```
-What is a joint probability distribution density function look like?
+What does a joint probability distribution density function look like?
 ```
 
 Back:
