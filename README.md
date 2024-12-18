@@ -15,14 +15,16 @@ These are some of features it includes:
 
 ## Setup
 
-1. Install requirements 
+**STEP 1: Install requirements** 
 
 I highly suggest first activating a virtual enviroment but after that go ahead and install the all the requirements need for this project using:
 ```
 pip install -r requirements.txt
 ```
 
-2. Next go to [Groq](https://console.groq.com/keys) and generate an API key. 
+**STEP 2: Generate Groq API Key** 
+
+Next go to [Groq](https://console.groq.com/keys) and generate an API key.
 
 The set the key in your terminal enviroment using:
 ```
@@ -35,15 +37,17 @@ echo $GROQ_API_KEY
 ```
 If you recieve the key you inputted it is working.
 
-3. Upload the pdf you want to work with to the same directory as this file so it can be accessed in future steps.
+**STEP 3: Upload the pdf you want to work with to your working directory as this file so it can be accessed in future steps.**
 
-4. Download the Anki 2 application.
+**STEP 4: Download the Anki 2 application.**
 
 Go the [Anki 2 install page] (https://apps.ankiweb.net/) and press the download button. Follow the instructions and open the application once it is on your computer.  
 
 ## Running it
 
-1. To start the program use the command: 
+**STEP 1: Run the command**
+
+To start the program use the command:
 ```
 $ python3 MasteryCards.py
 ```
@@ -53,9 +57,9 @@ You will be prompted with:
 Enter the PDF file name you want to analyze (ex: my_probability_textbook.pdf):
 ```
 
-2. In response to this you can type in the name or path to the file in your directory and press enter.
+**STEP 2: Input file path**
 
-This will then prompt something like this:
+In response to this you can type in the name or path to the file in your directory and press enter. This will then prompt something like this:
 ```
 Enter the PDF file name (with extension): text1.pdf
 Processing chunk 1 of 220...
@@ -65,21 +69,21 @@ Processing chunk 3 of 220...
 
 Expecting this to take a few minutes to complete.
 
-3. Copying the Anki media files
+**STEP 3: Copying the Anki media files**
 
-Unfortunately since my numerous attempts to automize this have failed, you have to manually move the png files you have collected from your pdf to Anki media folder for them to be displayed on your flashcards.  
+Unfortunately since my numerous attempts to automize this have failed, you have to manually move the png files you have collected from your pdf to Anki media folder for them to be displayed on your flashcards.    
 
-To do this you have to copy the contents of the created folder **anki_media** in the working directory and paste it into the Anki media folder located at:
+To do this you have to copy the contents of the created folder **anki_media** in the working directory and paste it into the Anki media folder located at:  
 
-On MacOs: ~/Library/Application Support/Anki2/<YourProfileName>/collection.media  
+- On MacOs: ~/Library/Application Support/Anki2/<YourProfileName>/collection.media  
 
-On Windows:\Users\<YourUsername>\AppData\Roaming\Anki2\<YourProfileName>\collection.media  
+- On Windows:\Users\<YourUsername>\AppData\Roaming\Anki2\<YourProfileName>\collection.media  
 
-On Linux: ~/.local/share/Anki2/<YourProfileName>/collection.media  
+- On Linux: ~/.local/share/Anki2/<YourProfileName>/collection.media  
 
 Note: If you have not explicity logged into the Anki 2 application then your username will be 'User 1' even if you have an account and are logged into their website.  
 
-4. Import the flashcards.tsv file to Anki 2
+**STEP 4: Import the flashcards to Anki 2**
 
 Next you open the Anki2 application and press **Import Files**, then navigate to and select the **flashcards.tsv** file in your finder. This will create a new pop up window, here make sure there are only two columns in the **File** section and then press **Import** in the top right corner. After this it will go to a new Overview and Details page and you can close the window, returning you to the Anki2 application.
 
@@ -87,7 +91,7 @@ Now are reading to select the **Default** deck you just imported and start study
 
 ## Key features In-depth
 
-1. Prompt to collect accurate and general flashcards from the content in structured format
+**1. Prompt to collect accurate and general flashcards from the content in structured format**
 
 After a lot of fine tuning I used a prompt that provided me with flashcards that were general enough to cover full probability topics not just textbook specific examples while also creating enough flashcards on the subject. It insits upon a strict:
 
@@ -124,7 +128,7 @@ Do not include placeholder phrases like "Not provided in the text" or "No defini
 """
 ```
 
-2. Figure extraction and margin detection:
+**2. Figure extraction and margin detection:**
 
 I detected figures by creating an a large array of the pixels around matches to Bolded words 'figure' using the library fitz and then used a function to detect large white margins to know where to crop a box around just the figure at.
 
@@ -149,7 +153,7 @@ In this function you can see I use a **tolerance** of 250 to detect any white, o
 I use the function Image from PIL (Python Imaging Library) tpo take the snapshot and then run through the rows of the image from top to bottom to identify where the figure ends. This updated height value is then used to create an accurate png snapshot of the figure which is saved to the anki_media folder to be later passed to Anki 2.
 
 
-3. Prompt for caption summarization/generalization.
+**3. Prompt for caption summarization/generalization.**
 
 This is the second prompt I used to create structured front sides of flashcards for the figure flashcards. After scrapping the words around the figure references of the figure I am refering to, importantly including the caption for the figure, I input this into the LLM and ask it to understand what the figure is most likely showing and create a question for flashcard front about what the general topic and specific scenario looks like.
 
